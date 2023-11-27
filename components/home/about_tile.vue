@@ -15,10 +15,10 @@
         </div>
       </div>
       <div class="col-span-1 relative">
-        <nuxt-img
-          src="/image_tes.png"
+        <img
+          src="~/assets/image_tes.png"
           class="absolute w-full h-full opacity-60"
-        ></nuxt-img>
+        />
 
         <div class="absolute text-white bottom-2 left-2">
           <div class="text-white text-lg font-normal font-['DM Sans']">

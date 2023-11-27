@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  colorMode: { preference: "light" },
   modules: [
     "@nuxt/ui",
     "@nuxtjs/google-fonts",
@@ -8,6 +9,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@vueuse/nuxt",
   ],
+
   googleFonts: {
     families: {
       "Jockey One": true,
@@ -17,6 +19,7 @@ export default defineNuxtConfig({
       ABeeZee: true,
     },
   },
+
   image: {
     dir: "assets",
   },

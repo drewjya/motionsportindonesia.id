@@ -3,22 +3,22 @@ const data = ref([
   {
     type: "Merch",
     title: "Jersey MSI",
-    image: "products/1.png",
+    image: "/products/1.png",
   },
   {
     type: "Merch",
     title: "Celana MSI",
-    image: "products/2.png",
+    image: "/products/2.png",
   },
   {
     type: "Merch Tee",
     title: "Shirt MSI",
-    image: "products/3.png",
+    image: "/products/3.png",
   },
   {
     type: "Merch S",
     title: "Shirt MSI",
-    image: "products/4.png",
+    image: "/products/4.png",
   },
 ]);
 </script>
@@ -39,7 +39,7 @@ const data = ref([
           :key="item.title"
         >
           <div class="flex flex-col items-center">
-            <nuxt-img
+            <img
               v-if="index % 2 != 0"
               :src="item.image"
               class="float-left w-60 h-40 object-cover"
@@ -52,7 +52,7 @@ const data = ref([
               <div>{{ item.type }} <br />{{ item.title }}</div>
             </div>
 
-            <nuxt-img
+            <img
               v-if="index % 2 != 1"
               :src="item.image"
               class="float-left margin-fleche w-60 h-40 object-cover"

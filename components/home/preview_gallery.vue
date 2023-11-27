@@ -3,10 +3,7 @@
 <template>
   <div class="py-4 pt-2">
     <div class="h-[37vh] w-full relative">
-      <nuxt-img
-        class="absolute w-full h-full"
-        src="/preview_gallery.png"
-      ></nuxt-img>
+      <img class="absolute w-full h-full" src="~/assets//preview_gallery.png" />
 
       <div class="absolute w-full h-full z-10">
         <div class="relative w-full h-full">

@@ -13,7 +13,7 @@ let color = ["bg-[#D93F3F]", "bg-[#73DBE2]", "bg-[#6978FF]"];
         </div>
         <div class="grow grid grid-cols-2 gap-2">
           <div class="col-span-1 relative">
-            <nuxt-img src="/customize_jersey.png" class="h-full"></nuxt-img>
+            <img src="~/assets/customize_jersey.png" class="h-full" />
             <div
               class="absolute bottom-0 h-14 lg:h-24 w-full bg-gradient-to-t from-slate-50 to-indigo-600"
             ></div>
@@ -50,7 +50,7 @@ let color = ["bg-[#D93F3F]", "bg-[#73DBE2]", "bg-[#6978FF]"];
         >
           News
         </div>
-        <nuxt-img class="grow" src="/news.png"></nuxt-img>
+        <img class="grow" src="~/assets/news.png" />
       </div>
     </div>
   </div>

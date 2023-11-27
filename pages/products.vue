@@ -1,3 +1,4 @@
+import { UButton } from '../.nuxt/components';
 <script lang="ts" setup>
 const items = [
   [
@@ -9,11 +10,37 @@ const items = [
     },
   ],
 ];
+
+let datas = [
+  "1",
+  "2",
+  "3",
+  "4",
+
+  "1a",
+  "2a",
+  "3a",
+  "4a",
+
+  "1c",
+  "2c",
+  "3c",
+  "4c",
+];
+
+const gridval = computed(() => {
+  console.log(Math.round(datas.length / 4));
+  return Math.round(datas.length / 4);
+});
+
+definePageMeta({
+  layout: "products",
+});
 </script>
 
 <template>
   <div class="relative">
-    <nuxt-img src="/product_test.png" class="w-screen"></nuxt-img>
+    <img src="~/assets/product_test.png" class="w-screen h-60 lg:h-96" />
     <div
       class="absolute h-full w-full top-0 bg-gradient-to-b from-zinc-300 to-neutral-800 opacity-[0.35] z-50"
     ></div>
@@ -24,34 +51,83 @@ const items = [
       Customizable Jerseys<br />for you and your homies
     </div>
   </div>
-  <div class="flex justify-between px-9 bg-gray-50">
-    <div class="flex">
-      <div>Button 1</div>
-      <UDropdown
-        :items="items"
-        mode="hover"
-        :popper="{ placement: 'bottom-start' }"
-      >
+  <div class="flex justify-between px-9 bg-gray-50 py-4 sticky">
+    <div class="flex space-x-3">
+      <UButton color="black" icon="i-heroicons-squares-2x2" />
+      <UDropdown :items="items" :popper="{ placement: 'bottom-start' }">
         <UButton
-          color="white"
-          label="Options"
+          class="bg-zinc-300 text-black hover:text-white w-52 justify-between items-center"
+          color="black"
+          variant="solid"
+          block
           trailing-icon="i-heroicons-chevron-down-20-solid"
-        />
+        >
+          Aturkan Berdasarkan
+        </UButton>
       </UDropdown>
     </div>
-    <div class="flex">
-      <div>Button 1</div>
+    <div class="flex space-x-3">
+      <UButton color="black" icon="i-heroicons-funnel" />
       <UDropdown
         :items="items"
         mode="hover"
         :popper="{ placement: 'bottom-start' }"
       >
         <UButton
-          color="white"
-          label="Options"
-          trailing-icon="i-heroicons-chevron-down-20-solid"
-        />
+          block
+          class="bg-zinc-300 text-black w-52 justify-between hover:text-white items-center"
+          color="black"
+          variant="solid"
+          :trailing="true"
+          icon="i-heroicons-chevron-down-20-solid"
+        >
+          Filter</UButton
+        >
       </UDropdown>
+    </div>
+  </div>
+  <div class="m-12">
+    <div v-for="(i, index) in gridval">
+      <div class="text-red flex space-x-4 justify-star mb-4">
+        <div v-for="(e, index2) in 4">
+          <div v-if="datas[4 * index + index2] !== undefined" class="flex-1">
+            <img
+              src="https://avatars.githubusercontent.com/u/739984?v=4"
+              alt=""
+            />
+
+            <div class="w-full bg-gray-300 rounded-b-3xl p-1 py-2"></div>
+            <div class="mt-1 text-center text-sm">
+              <div>
+                Product {{ datas[4 * index + index2] }} <br />Product
+                {{ datas[4 * index + index2] }}
+                <br />
+                Product {{ datas[4 * index + index2] }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full h-64 bg-red-200 relative">
+      <img src="/products/1.png" alt="" class="h-full w-full absolute" />
+    </div>
+    <div class="w-[28rem] h-8 mt-12 mx-auto flex justify-between">
+      <UButton
+        variant="solid"
+        color="black"
+        class="w-28 justify-center text-white hover:bg-gray-500"
+        icon="i-heroicons-backward"
+        >Prev</UButton
+      >
+      <UButton
+        variant="solid"
+        color="black"
+        class="w-28 justify-center hover:bg-gray-500"
+        icon="i-heroicons-forward"
+        >Next</UButton
+      >
     </div>
   </div>
 </template>
