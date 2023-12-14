@@ -1,12 +1,14 @@
 <script lang="ts" setup></script>
 
 <template>
-  <Navbar />
+  <!-- <Navbar />
   <div class="h-[calc(100vh-4rem)] bg-[#f9fafc] overflow-y-auto">
     <slot />
 
     <Footer />
-  </div>
+  </div> -->
+
+  <slot />
 </template>
 
 <style scoped></style>
