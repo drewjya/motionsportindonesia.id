@@ -11,22 +11,17 @@ const items = [
   ],
 ];
 
-let datas = [
-  "1",
-  "2",
-  "3",
-  "4",
-
-  "1a",
-  "2a",
-  "3a",
-  "4a",
-
-  "1c",
-  "2c",
-  "3c",
-  "4c",
-];
+let datas: any[] = [];
+for (let i=0;i<16;i++){
+  datas.push({
+    ProductName: "Product " + i,
+    Price: (10000 * (1+i)).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+    Status: i%2==0? "Sold Out": "Available"
+  }) 
+}
 
 const gridval = computed(() => {
   console.log(Math.round(datas.length / 4));
@@ -91,20 +86,22 @@ definePageMeta({
       <div class="text-red flex space-x-4 justify-star mb-4">
         <div v-for="(e, index2) in 4">
           <div v-if="datas[4 * index + index2] !== undefined" class="flex-1">
+            <div class="relative transition-transform ease-in-out duration-300">
             <img
               src="https://avatars.githubusercontent.com/u/739984?v=4"
               alt=""
             />
-
+          </div>
             <div class="w-full bg-gray-300 rounded-b-3xl p-1 py-2"></div>
-            <div class="mt-1 text-center text-sm">
-              <div>
-                Product {{ datas[4 * index + index2] }} <br />Product
-                {{ datas[4 * index + index2] }}
-                <br />
-                Product {{ datas[4 * index + index2] }}
+            <NuxtLink to="/product_details">
+            <div class="mt-1 text-center text-base">
+              <div class="font-sans font-semibold ">
+                <a> {{ datas[4 * index + index2].ProductName }} </a><br />
+                 Rp. {{ datas[4 * index + index2].Price }} <br />
+                 {{ datas[4 * index + index2].Status }}
               </div>
             </div>
+          </NuxtLink>
           </div>
         </div>
       </div>
