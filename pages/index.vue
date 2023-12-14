@@ -1,4 +1,15 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+useHead({
+  title: "Motion Sport Indonesia",
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/logo_motion_white.png",
+    },
+  ],
+});
+</script>
 
 <template>
   <div
