@@ -13,7 +13,7 @@ useHead({
 
 <template>
   <div
-    class="w-full h-screen flex justify-center items-center bg-black flex-col text-white"
+    class="w-full h-[100dvh] flex justify-center items-center bg-black flex-col text-white"
   >
     <img
       src="~/assets/logo_motion.png"
