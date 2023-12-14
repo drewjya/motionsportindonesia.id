@@ -22,7 +22,7 @@ useHead({
     />
     <div class="text-center">
       <div class="text-4xl font-bold">Motion Sport Indonesia</div>
-      <div class="italic text-3xl">Coming Soon</div>
+      <div class="italic text-2xl">Coming Soon</div>
     </div>
   </div>
 </template>
