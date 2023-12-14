@@ -1,4 +1,4 @@
-import { UButton } from '../.nuxt/components';
+<!-- import { UButton } from '../.nuxt/components';
 <script lang="ts" setup>
 const items = [
   [
@@ -132,4 +132,4 @@ definePageMeta({
   </div>
 </template>
 
-<style scoped></style>
+<style scoped></style> -->

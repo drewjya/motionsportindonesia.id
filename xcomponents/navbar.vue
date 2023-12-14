@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<!-- <script lang="ts" setup>
 import { onClickOutside } from "@vueuse/core";
 import { watch } from "vue";
 import { useRoute } from "vue-router";
@@ -185,4 +185,4 @@ onMounted(() => {
   font-style: normal;
   font-weight: 400;
 }
-</style>
+</style> -->

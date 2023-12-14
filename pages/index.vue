@@ -1,14 +1,12 @@
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
 
 <template>
-  <div class="px-[10%] pt-10">
-    <HomeWelcome />
-    <HomeProductTile />
-    <HomeAboutTile />
-    <HomePreviewGallery />
-    <HomeCustomJersey />
+  <div class="w-full h-full flex justify-center items-center bg-black flex-col">
+    <img src="~/assets/logo_motion.png" alt="" class="h-[60vh]" />
+    <div class="text-center">
+      <div class="text-4xl font-bold">Motion Sport Indonesia</div>
+      <div class="italic text-3xl">Coming Soon</div>
+    </div>
   </div>
 </template>
 
