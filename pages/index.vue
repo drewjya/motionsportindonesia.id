@@ -18,7 +18,7 @@ useHead({
     <img
       src="~/assets/logo_motion.png"
       alt=""
-      class="h-[60vh] object-contain"
+      class="h-[20vh] md:h-[50vh] lg:h-[60vh] object-contain"
     />
     <div class="text-center">
       <div class="text-4xl font-bold">Motion Sport Indonesia</div>
