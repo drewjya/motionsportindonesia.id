@@ -34,7 +34,7 @@ definePageMeta({
     <!-- Left-->
     <!-- Product Image and Desc -->
     <div id="productImg" class="flex  w-3/6 flex-col mt-24">
-      <div class="w-full flex justify-center">
+      <div class="w-full flex justify-scenter">
       <img class="m-auto" src="~/assets/product-details.png" alt="" width="500" height="500">
     </div>
       <div id="productDesc" class="font-sans  my-8 flex justify-center">
@@ -95,7 +95,7 @@ definePageMeta({
       </div>
       <div class="w-1/2 relative text-center text-lg">
         <select id="qty" name="qty" class="mt-1 p-2 pl-6 pr-8 border rounded-full w-full appearance-none">
-          <option v-for="(e, index) in 50"  value={{ index+1 }}>{{index+1}}</option>
+          <option v-for="(index) in 50"  :value=" index+1">{{index+1}}</option>
         </select>
         <div class="absolute inset-y-0 right-4 flex items-center px-2 pointer-events-none">
           <div class="h-4/6 w-[2px] bg-gray-200 mt-1 mr-2"></div>
