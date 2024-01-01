@@ -107,18 +107,22 @@ definePageMeta({
 
        <!-- Button -->
       <div class="rounded-full overflow-hidden border w-1/2 mt-8 h-12 relative ">
+        <NuxtLink to="/cart" >
       <UButton color="white"  class="rounded-full absolute w-6/12 h-full text-lg text-semibold hover:bg-gray-300 focus:bg-gray-300">
         <div class="mx-auto items-center ">
           <img src="~/assets/icons/icon-add-to-cart.svg" alt="" class="left-5 absolute" width="29"/>
           <p >Add to Cart</p>
         </div>
       </UButton>
+    </NuxtLink>
+    <NuxtLink to="/cart" >
       <UButton color="gray" class="rounded-full absolute right-0 w-7/12 h-full text-lg text-semibold hover:bg-gray-300 focus:bg-gray-300">
         <div class="mx-auto items-center " >
           <img src="~/assets/icons/icon-buy-now.svg" alt=""  class="left-6 absolute"  width="32"/>
           <p >Buy Now</p>
         </div>
       </UButton>
+    </NuxtLink>
       </div>
 
     </div>
