@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  motionsport_web:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: motionsport_web
+    image: motionsport_web
+    # restart: always
+    ports:
+      - "8800:3000"
