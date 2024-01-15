@@ -27,12 +27,14 @@ onMounted(() => {
 
 <template>
   <div class="h-16 w-screen bg-black text-white flex items-center px-10">
-    <div class="title grow flex">
-      <div>X</div>
+    <div class="title grow flex items-center">
+      <div class="flex-col justify-center">
+        <img src="~/assets/logo.png" alt="" class="w-20 h-15 mt-4" />
+      </div>
       <div>Motion Sports IDN</div>
     </div>
     <div class="hidden lg:block">
-      <div class="flex items-center space-x-4 justify-center">
+      <div class="flex items-center space-x-4 justify-center w-full">
         <NuxtLink to="/">
           <div
             class="item-nav hover:bg-slate-300 hover:text-black hover:rounded-lg p-1"
@@ -65,20 +67,37 @@ onMounted(() => {
             About Us
           </div>
         </NuxtLink>
-        <NuxtLink to="/contact">
+        <NuxtLink to="/contact" >
           <div
-            class="item-nav hover:bg-slate-300 hover:text-black hover:rounded-lg p-1"
+            class="item-nav hover:bg-slate-300 hover:text-black hover:rounded-lg p-1 mr-4"
             :class="route.fullPath == '/contact' ? 'text-sky-300' : ''"
           >
             Contact Us
           </div>
         </NuxtLink>
-        <UInput
+
+        |
+         
+        <NuxtLink to="/cart" class="ml-10">
+          <img src="~/assets/icons/icon-cart.svg" alt=""  class=""  width="20" height="60"/>
+        </NuxtLink>
+
+        <NuxtLink to="/signup" class="ml-10">
+          <img src="~/assets/icons/icon-account.svg" alt=""  class=""  width="20" height="60"/>
+        </NuxtLink>
+
+        <NuxtLink to="/signup" class="ml-10">
+          <img src="~/assets/icons/icon-order.svg" alt=""  class=""  width="20" height="60"/>
+        </NuxtLink>
+
+
+        <!-- <UInput
           placeholder="Search..."
           class="w-24 lg:w-40"
           color="sky"
           size="xs"
           variant="outline"
+          style="display: none;"
         >
           <template #trailing>
             <span class="text-gray-500 dark:text-gray-400 text-xs"
@@ -98,11 +117,11 @@ onMounted(() => {
               </svg>
             </span>
           </template>
-        </UInput>
+        </UInput> -->
       </div>
     </div>
 
-    <div class="block lg:hidden">
+    <div class="block lg:hidden">   
       <button
         class="flex flex-col h-12 w-12 justify-center items-center group"
         @click="isActive = !isActive"
@@ -162,7 +181,13 @@ onMounted(() => {
                 Contact Us
               </li></NuxtLink
             >
-            <li>Search</li>
+            <NuxtLink to="/signup">
+              <li
+                class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
+              >
+                Sign Up
+              </li></NuxtLink
+            >
           </ul>
         </div>
       </div>
