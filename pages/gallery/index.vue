@@ -17,28 +17,28 @@ const gallery_items = ref<Gallery[]>([
     url: "/gallery/gallery-item1.png",
     title: "Ballers wear motion sports on court",
     preview:
-      "Trainer and fam are attending basketball match with basketball<br/> jerseys made in Indonesia. this brand is ...",
+      "Trainer and fam are attending basketball match with basketball jerseys made in Indonesia. this brand is ...",
     tanggal: "20 Sept 2023",
   },
   {
     url: "/gallery/gallery-item1.png",
     title: "Ballers wear motion sports on court",
     preview:
-      "Trainer and fam are attending basketball match with basketball<br/> jerseys made in Indonesia. this brand is ...",
+      "Trainer and fam are attending basketball match with basketball jerseys made in Indonesia. this brand is ...",
     tanggal: "20 Sept 2023",
   },
   {
     url: "/gallery/gallery-item1.png",
     title: "Ballers wear motion sports on court",
     preview:
-      "Trainer and fam are attending basketball match with basketball<br/> jerseys made in Indonesia. this brand is ...",
+      "Trainer and fam are attending basketball match with basketball jerseys made in Indonesia. this brand is ...",
     tanggal: "20 Sept 2023",
   },
   {
     url: "/gallery/gallery-item1.png",
     title: "Ballers wear motion sports on court",
     preview:
-      "Trainer and fam are attending basketball match with basketball<br/> jerseys made in Indonesia. this brand is ...",
+      "Trainer and fam are attending basketball match with basketball jerseys made in Indonesia. this brand is ...",
     tanggal: "20 Sept 2023",
   },
 ]);

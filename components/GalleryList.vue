@@ -31,7 +31,9 @@ const props = defineProps<{
             >
               {{ i.tanggal }}
             </p>
-            <div class="text-xl font-bold capitalize" v-html="i.preview"></div>
+            <div class="text-xl font-bold capitalize text-justify">
+              {{ i.preview }}
+            </div>
           </div>
           <div>
             <div class="bg-gradient-to-b from-transparent to-gray-300 p-5">
