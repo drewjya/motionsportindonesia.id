@@ -67,14 +67,6 @@ onMounted(() => {
             About Us
           </div>
         </NuxtLink>
-        <NuxtLink to="/contact">
-          <div
-            class="item-nav hover:bg-slate-300 hover:text-black hover:rounded-lg p-1 mr-4"
-            :class="route.fullPath === '/contact' ? 'text-sky-300' : ''"
-          >
-            Contact Us
-          </div>
-        </NuxtLink>
 
         |
 
@@ -179,18 +171,7 @@ onMounted(() => {
                 About Us
               </li></NuxtLink
             >
-            <NuxtLink to="/contact">
-              <li
-                :class="
-                  route.fullPath === '/contact'
-                    ? 'bg-slate-100 !text-black'
-                    : ''
-                "
-                class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
-              >
-                Contact Us
-              </li></NuxtLink
-            >
+
             <NuxtLink to="/signup">
               <li
                 :class="
