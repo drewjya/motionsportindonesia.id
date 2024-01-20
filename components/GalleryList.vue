@@ -10,28 +10,30 @@ const props = defineProps<{
   <div class="py-3 flex flex-col gap-2">
     <div v-for="(i, index) in props.datas">
       <div class="grid gallery_grid">
-        <div class="relative">
-          <img :src="i.url" class="gallery-image" :alt="`Image ${index}`" />
-          <div
-            class="absolute w-full h-full bottom-0 bg-gradient-to-t from-black via-opacity-8 to-transparent"
-          ></div>
-          <p
-            class="text-white text-3xl font-normal capitalize absolute bottom-0 z-[99] px-10 pb-8"
-            style="font-family: Jockey One"
-          >
-            {{ i.title }}
-          </p>
+        <div class="flex">
+          <div class="relative">
+            <img :src="i.url" class="gallery-image" :alt="`Image ${index}`" />
+            <div
+              class="absolute shadow h-full bottom-0 bg-gradient-to-t from-black via-opacity-8 to-transparent"
+            ></div>
+            <p
+              class="text-white text-2xl font-normal capitalize absolute bottom-0 z-[99] px-10 pb-8"
+              style="font-family: Jockey One"
+            >
+              {{ i.title }}
+            </p>
+          </div>
         </div>
 
         <div class="flex flex-col justify-between">
           <div class="p-2 px-5">
             <p
-              class="text-black text-lg font-bold capitalize"
+              class="text-black text-base font-bold capitalize"
               style="font-family: DM Sans"
             >
               {{ i.tanggal }}
             </p>
-            <div class="text-xl font-bold capitalize text-justify">
+            <div class="text-sm capitalize text-justify">
               {{ i.preview }}
             </div>
           </div>
@@ -68,11 +70,14 @@ const props = defineProps<{
 
 .gallery-image {
   min-height: 200px;
-  max-height: 300px;
-  width: 100%;
-  aspect-ratio: 5/3;
-  object-fit: cover;
+  max-height: 450px;
 
-  background-color: #262626;
+  aspect-ratio: 5/4;
+  object-fit: cover;
+}
+.shadow {
+  min-height: 200px;
+  max-height: 450px;
+  width: 100%;
 }
 </style>
