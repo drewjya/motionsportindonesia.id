@@ -1,31 +1,24 @@
 import { UButton } from '../.nuxt/components';
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
-const items =
-{
+const items = {
   name: "PERBANAS JERSEY",
   desc: "A new made T-Shirt inspired by Andre Wijaya's brilliant idea as a creator of carried mage in Mobile Legends",
   image: [
     "https://avatars.githubusercontent.com/u/739984?v=4",
     "https://avatars.githubusercontent.com/u/739984?v=4",
   ],
-  tag: [
-    "S-Shirt",
-    "SERIAL CODE",
-  ],
+  tag: ["S-Shirt", "SERIAL CODE"],
   price: ref(1000000),
-  promo: [
-    "Free Ongkir",
-    "Promo Code",
-  ],
+  promo: ["Free Ongkir", "Promo Code"],
   size: "XL",
-  qty: ref(2)
+  qty: ref(2),
 };
 const getPrice = (): string => {
-  return (items.qty.value * items.price.value).toLocaleString('en-US', {
+  return (items.qty.value * items.price.value).toLocaleString("en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
@@ -46,85 +39,150 @@ const back = () => {
   router.go(-1);
 };
 
+type Product = {
+  nama: string;
+  category: string;
+  serialCode: string;
+  price: number;
+  sizeList: string[];
+  size: string;
+  desc: string;
+  image: string;
+  quantity: number;
+};
+
+const cartItems = <Product[]>[
+  {
+    category: "T-Shirt",
+    desc: "BLACK, PURPLE CO",
+    image: "/product-details.png",
+    nama: "PERBANAS JERSEY",
+    price: 250000,
+    quantity: 1,
+    serialCode: "123456789",
+    size: "XL",
+    sizeList: ["S", "M", "L", "XL"],
+  },
+  {
+    category: "S-Shirt",
+    desc: "GREEN, PURPLE CO",
+    image: "/product-details.png",
+    nama: "PERBANAS JERSEY +",
+    price: 280000,
+    quantity: 1,
+    serialCode: "1234567",
+    size: "XL",
+    sizeList: ["S", "M", "L", "XL"],
+  },
+  {
+    category: "S-Shirt",
+    desc: "GREEN, PURPLE CO",
+    image: "/product-details.png",
+    nama: "PERBANAS JERSEY +",
+    price: 280000,
+    quantity: 1,
+    serialCode: "1234567",
+    size: "XL",
+    sizeList: ["S", "M", "L", "XL"],
+  },
+  {
+    category: "S-Shirt",
+    desc: "GREEN, PURPLE CO",
+    image: "/product-details.png",
+    nama: "PERBANAS JERSEY +",
+    price: 280000,
+    quantity: 1,
+    serialCode: "1234567",
+    size: "XL",
+    sizeList: ["S", "M", "L", "XL"],
+  },
+  {
+    category: "S-Shirt",
+    desc: "GREEN, PURPLE CO",
+    image: "/product-details.png",
+    nama: "PERBANAS JERSEY +",
+    price: 280000,
+    quantity: 1,
+    serialCode: "1234567",
+    size: "XL",
+    sizeList: ["S", "M", "L", "XL"],
+  },
+  {
+    category: "S-Shirt",
+    desc: "GREEN, PURPLE CO",
+    image: "/product-details.png",
+    nama: "PERBANAS JERSEY +",
+    price: 280000,
+    quantity: 1,
+    serialCode: "1234567",
+    size: "XL",
+    sizeList: ["S", "M", "L", "XL"],
+  },
+];
+
 definePageMeta({
-  layout: "products",
+  layout: "cart",
 });
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col">
-    <!-- Button -->
-    <div class="rounded-full overflow-hidden border w-1/6 mt-8 h-12 relative border-black m-12">
-      <NuxtLink to="/products">
-        <UButton color="white"
-          class="rounded-full absolute w-full h-full text-lg text-semibold hover:bg-gray-300 focus:bg-gray-300">
-          <div class="mx-auto items-center ">
-            <img src="~/assets/icons/icon-add-to-cart.svg" alt="" class="left-5 absolute" width="29" />
-            <p>Shop For More</p>
-          </div>
-        </UButton>
-      </NuxtLink>
-    </div>
-
-    <div class="flex flex-col h-[65%] justify-center">
-      <div id="productImg" class="flex justify-center">
-        <div class="w-[25%] flex justify-center">
-          <img class="w-[70%]" src="~/assets/product-details.png" alt="">
-        </div>
-        <!-- Product Name and Tag -->
-        <div id="productName" class="w-[30%] font-semibold font-sans text-4xl my-2">
-          {{ items.name }}
-
-          <div class="flex flex-wrap ">
-            <div v-for="(tag, index) in items.tag"
-              class="border border-solid border-black w-32 h-8 rounded-full mt-4 mr-6 text-center text-base">
-              {{ tag }}
-            </div>
-          </div>
-
-          <div class="text-xl font-normal flex justify-between my-[5%]">
-            <span>
-              Size {{ items.size }}, BLACK PURPLE CO
-            </span>
-            <span>
-              {{ items.qty }}X
-            </span>
-          </div>
-
-
-          <div class="text-xl font-normal flex justify-between my-[5%]">
-            <button @click="decrement" class="bg-gray-300 px-4 py-2 rounded">-</button>
-            <button @click="increment" class="bg-gray-300  px-4 py-2 rounded">+</button>
-          </div>
-
-          <div class="border-t border-solid border-black my-4"></div>
-
-          <div class="text-xl font-normal flex my-[5%]">
-            PRICE:
-            <span class="font-bold ml-4">
-              Rp. {{ getPrice() }}
-            </span>
-          </div>
-        </div>
+  <div class="w-full h-full">
+    <div class="px-8 py-4 flex justify-between">
+      <NuxtLink to="/products"
+        ><UButton
+          :ui="{
+            rounded: 'rounded-full border-1 border-gray-300',
+          }"
+          icon="i-heroicons-shopping-cart"
+          size="sm"
+          color="white"
+          variant="solid"
+          :trailing="false"
+          >Shop For More</UButton
+        ></NuxtLink
+      >
+      <div class="flex gap-4">
+        <UButton
+          label="Back"
+          icon="i-heroicons-arrow-left"
+          color="black"
+          variant="solid"
+          :trailing="false"
+          class="px-6"
+        />
+        <UButton
+          label="Check Out"
+          color="black"
+          trailing-icon="i-heroicons-shopping-bag"
+          variant="solid"
+          class="px-6"
+        />
       </div>
     </div>
-    <div class="flex justify-between">
-      <div class="rounded-full sticky border w-[12%] mt-8 h-12 mx-[6%]">
-          <UButton @click="back" color="black" class="w-full h-full text-lg text-semibold">
-            <div class="mx-auto items-center text-white">
-              <p>Back</p>
-            </div>
-          </UButton>
+    <div class="px-8 flex justify-between pb-2 text-black items-center">
+      <div class="flex items-center gap-3">
+        <UCheckbox />
+        <p>Pilih Semua</p>
       </div>
-      <div class="rounded-full sticky border w-[12%] mt-8 h-12 mx-[6%]">
-        <NuxtLink to="/checkout">
-        <UButton color="black" class="w-full h-full text-lg text-semibold">
-          <div class="mx-auto items-center text-white">
-            <p>Check Out</p>
-          </div>
-        </UButton>
-      </NuxtLink>
+      <div>
+        <UButton
+          label="Hapus Semua"
+          trailing-icon="i-heroicons-trash"
+          color="black"
+        />
       </div>
+    </div>
+    <div class="h-[calc(100%-6.5rem)] bg-yellow-300 overflow-y-auto">
+      <div class="flex flex-col gap-[0.35rem] bg-gray-100 px-2">
+        <CartItem
+          v-for="i in cartItems"
+          :product="i"
+          :on-decrement="(data) => {}"
+          :on-increment="(data) => {}"
+          :on-remove="(data) => {}"
+        />
+      </div>
+      <Footer />
     </div>
   </div>
 </template>

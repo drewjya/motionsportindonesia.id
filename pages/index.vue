@@ -1,4 +1,8 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+definePageMeta({
+  colorMode: "light",
+});
+</script>
 
 <template>
   <div class="px-[10%] pt-10">
