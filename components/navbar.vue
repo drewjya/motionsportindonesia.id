@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import { onClickOutside } from "@vueuse/core";
-import { watch } from "vue";
-import { useRoute } from "vue-router";
 const isActive = ref(false);
 const navIcon = ref(null);
 
