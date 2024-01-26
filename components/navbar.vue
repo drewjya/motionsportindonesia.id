@@ -67,7 +67,7 @@ onMounted(() => {
             About Us
           </div>
         </NuxtLink>
-        <NuxtLink to="/contact" >
+        <NuxtLink to="/contact">
           <div
             class="item-nav hover:bg-slate-300 hover:text-black hover:rounded-lg p-1 mr-4"
             :class="route.fullPath == '/contact' ? 'text-sky-300' : ''"
@@ -77,19 +77,36 @@ onMounted(() => {
         </NuxtLink>
 
         |
-         
+
         <NuxtLink to="/cart" class="ml-10">
-          <img src="~/assets/icons/icon-cart.svg" alt=""  class=""  width="20" height="60"/>
+          <img
+            src="~/assets/icons/icon-cart.svg"
+            alt=""
+            class=""
+            width="20"
+            height="60"
+          />
         </NuxtLink>
 
         <NuxtLink to="/signup" class="ml-10">
-          <img src="~/assets/icons/icon-account.svg" alt=""  class=""  width="20" height="60"/>
+          <img
+            src="~/assets/icons/icon-account.svg"
+            alt=""
+            class=""
+            width="20"
+            height="60"
+          />
         </NuxtLink>
 
         <NuxtLink to="/signup" class="ml-10">
-          <img src="~/assets/icons/icon-order.svg" alt=""  class=""  width="20" height="60"/>
+          <img
+            src="~/assets/icons/icon-order.svg"
+            alt=""
+            class=""
+            width="20"
+            height="60"
+          />
         </NuxtLink>
-
 
         <!-- <UInput
           placeholder="Search..."
@@ -121,7 +138,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="block lg:hidden">   
+    <div class="block lg:hidden">
       <button
         class="flex flex-col h-12 w-12 justify-center items-center group"
         @click="isActive = !isActive"
@@ -186,6 +203,13 @@ onMounted(() => {
                 class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
               >
                 Sign Up
+              </li></NuxtLink
+            >
+            <NuxtLink to="/login">
+              <li
+                class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
+              >
+                Log In
               </li></NuxtLink
             >
           </ul>
