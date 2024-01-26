@@ -2,7 +2,7 @@
 
 <template>
   <Navbar />
-  <div class="h-[calc(100vh-4rem)] bg-[#f9fafc]">
+  <div class="h-[calc(100vh-4rem)] bg-[#f9fafc] overflow-y-auto">
     <slot />
   </div>
 </template>

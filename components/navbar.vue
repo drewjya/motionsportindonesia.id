@@ -38,7 +38,7 @@ onMounted(() => {
         <NuxtLink to="/">
           <div
             class="item-nav hover:bg-slate-300 hover:text-black hover:rounded-lg p-1"
-            :class="route.fullPath == '/' ? 'text-sky-300' : ''"
+            :class="route.fullPath === '/' ? 'text-sky-300' : ''"
           >
             Home
           </div>
@@ -46,7 +46,7 @@ onMounted(() => {
         <NuxtLink to="/products">
           <div
             class="item-nav hover:bg-slate-300 hover:text-black hover:rounded-lg p-1"
-            :class="route.fullPath == '/products' ? 'text-sky-300' : ''"
+            :class="route.fullPath === '/products' ? 'text-sky-300' : ''"
           >
             Products
           </div>
@@ -54,7 +54,7 @@ onMounted(() => {
         <NuxtLink to="/gallery">
           <div
             class="item-nav hover:bg-slate-300 hover:text-black hover:rounded-lg p-1"
-            :class="route.fullPath == '/gallery' ? 'text-sky-300' : ''"
+            :class="route.fullPath === '/gallery' ? 'text-sky-300' : ''"
           >
             Gallery
           </div>
@@ -62,17 +62,9 @@ onMounted(() => {
         <NuxtLink to="/about">
           <div
             class="item-nav hover:bg-slate-300 hover:text-black hover:rounded-lg p-1"
-            :class="route.fullPath == '/about' ? 'text-sky-300' : ''"
+            :class="route.fullPath === '/about' ? 'text-sky-300' : ''"
           >
             About Us
-          </div>
-        </NuxtLink>
-        <NuxtLink to="/contact">
-          <div
-            class="item-nav hover:bg-slate-300 hover:text-black hover:rounded-lg p-1 mr-4"
-            :class="route.fullPath == '/contact' ? 'text-sky-300' : ''"
-          >
-            Contact Us
           </div>
         </NuxtLink>
 
@@ -107,34 +99,6 @@ onMounted(() => {
             height="60"
           />
         </NuxtLink>
-
-        <!-- <UInput
-          placeholder="Search..."
-          class="w-24 lg:w-40"
-          color="sky"
-          size="xs"
-          variant="outline"
-          style="display: none;"
-        >
-          <template #trailing>
-            <span class="text-gray-500 dark:text-gray-400 text-xs"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-4 h-4"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
-              </svg>
-            </span>
-          </template>
-        </UInput> -->
       </div>
     </div>
 
@@ -165,6 +129,9 @@ onMounted(() => {
           <ul>
             <NuxtLink to="/">
               <li
+                :class="
+                  route.fullPath === '/' ? 'bg-slate-100 !text-black' : ''
+                "
                 class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
               >
                 Home
@@ -172,6 +139,11 @@ onMounted(() => {
             >
             <NuxtLink to="/products">
               <li
+                :class="
+                  route.fullPath === '/products'
+                    ? 'bg-slate-100 !text-black'
+                    : ''
+                "
                 class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
               >
                 Products
@@ -179,6 +151,11 @@ onMounted(() => {
             >
             <NuxtLink to="/gallery">
               <li
+                :class="
+                  route.fullPath === '/gallery'
+                    ? 'bg-slate-100 !text-black'
+                    : ''
+                "
                 class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
               >
                 Gallery
@@ -186,20 +163,20 @@ onMounted(() => {
             >
             <NuxtLink to="/about">
               <li
+                :class="
+                  route.fullPath === '/about' ? 'bg-slate-100 !text-black' : ''
+                "
                 class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
               >
                 About Us
               </li></NuxtLink
             >
-            <NuxtLink to="/contact">
-              <li
-                class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
-              >
-                Contact Us
-              </li></NuxtLink
-            >
+
             <NuxtLink to="/signup">
               <li
+                :class="
+                  route.fullPath === '/signup' ? 'bg-slate-100 !text-black' : ''
+                "
                 class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
               >
                 Sign Up

@@ -1,6 +1,4 @@
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div class="px-[10%] pt-10">
@@ -8,7 +6,6 @@
     <HomeProductTile />
     <HomeAboutTile />
     <HomePreviewGallery />
-    <HomeCustomJersey />
   </div>
 </template>
 
