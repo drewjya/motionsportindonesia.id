@@ -1,7 +1,10 @@
 import { UButton } from '../.nuxt/components';
 <script lang="ts" setup>
-import { ref } from 'vue';
-enum Step{
+import { ref } from "vue";
+
+import VOtpInput from "vue3-otp-input";
+
+enum Step {
   signup,
   verif,
   signupsucces,
@@ -11,7 +14,7 @@ const signUp = () => {
   //.... do validation
   //.... do sign up trans
   var isSuccess = true;
-  if(isSuccess){
+  if (isSuccess) {
     stepForm.value = Step.verif;
   }
 };
@@ -20,153 +23,165 @@ const verif = () => {
   //.... do validation
   //.... do verif trans
   var isSuccess = true;
-  if(isSuccess){
+  if (isSuccess) {
     stepForm.value = Step.signupsucces;
   }
 };
 
 const signupsucces = () => {
   var isSuccess = true;
-  if(isSuccess){
+  if (isSuccess) {
   }
+};
+
+const otpInput = ref<InstanceType<typeof VOtpInput> | null>(null);
+const bindModal = ref("");
+
+const handleOnComplete = (value: string) => {
+  console.log("OTP completed: ", value);
+};
+
+const handleOnChange = (value: string) => {
+  console.log("OTP changed: ", value);
+};
+
+const clearInput = () => {
+  otpInput.value?.clearInput();
+};
+
+const fillInput = (value: string) => {
+  console.log(value);
+  otpInput.value?.fillInput(value);
 };
 </script>
 
 <template>
-    <div class="w-full flex items-center justify-center  h-full">
-      <div class="rounded-[4rem] border w-[40%]  h-[70%]" style="background-color: #EBEEF3;">
-
-        <div v-if="stepForm === Step.signup"  id="dForm"  class="flex flex-col m-12 h-full" >
-          <span class="font-bold font-sans text-4xl"> Sign Up</span> 
-
-          <label class="font-sans text-3xl mt-4"> Name</label> 
-          <input
-            type="text"
-            id="myInput1"
-            name="myInput"
-            class="mt-2 p-2 border rounded-3xl w-full text-xl"
-          />
-
-          <label class="font-sans text-3xl mt-4"> Email</label> 
-          <input
-            type="text"
-            id="myInput2"
-            name="myInput"
-            class="mt-2 p-2 border rounded-3xl w-full text-xl"
-          />
-
-          <label class="font-sans text-3xl mt-4"> Password</label> 
-          <input
-            type="text"
-            id="myInput3"
-            name="myInput"
-            class="mt-2 p-2 border rounded-3xl w-full text-xl"
-          />
-
-          <label class="font-sans text-3xl mt-4"> Confirm Password</label> 
-          <input
-            type="text"
-            id="myInput4"
-            name="myInput"
-            class="mt-2 p-2 border rounded-3xl w-full text-xl"
-          />
-
-          <div class="w-full h-full mt-10 flex justify-center">
-        <UButton
-        id="btnSignUp"
-        @click="signUp"
-          variant="solid"
-          color="black"
-          class="w-1/4 h-1/2 justify-center text-white hover:bg-gray-500" style="he"
-          >Submit</UButton
-        >
-      </div>
-        </div>
-
-        <div v-if="stepForm === Step.verif" id="dVerif"  class="flex flex-col m-12 h-full">
-          <span class="font-semibold font-sans text-5xl flex justify-center"> VERIFICATION</span> 
-
-          <div class="flex justify-center mt-6">
-            <label class="font-sans text-3xl mt-4 whitespace-normal w-[85%] "> Please verify your account on your email. Enter the codes we've sent to your account.</label> 
-          </div>
-
-          <div class="flex justify-center  mt-16 h-24">
-            <div class="flex w-[85%] justify-between text-3xl">
-              <input
-                id="pinInput"
-                name="pinInput"
-                class="border rounded-2xl w-[15%] text-center"
-                maxlength="1"
-              />
-              <input
-                id="pinInput2"
-                name="pinInput2"
-                class="border rounded-2xl w-[15%] text-center" 
-                maxlength="1"
-              />
-              <input
-                id="pinInput3"
-                name="pinInput3"
-                class="border rounded-2xl w-[15%] text-center"
-                maxlength="1"
-              />
-              <input
-                id="pinInput4"
-                name="pinInput4"
-                class="border rounded-2xl w-[15%] text-center" 
-                maxlength="1"
-              />
-
-              <input
-                id="pinInput5"
-                name="pinInput5"
-                class="border rounded-2xl w-[15%] text-center" 
-                maxlength="1"
-              />
-
-              <input
-                id="pinInput6"
-                name="pinInput6"
-                class="border rounded-2xl w-[15%] text-center" 
-                maxlength="1"
-              />
-          </div>
-        </div>
-
-          <div class="w-full h-[8%] mt-[15%]  flex justify-center">
-        <UButton
-        @click="verif"
-          variant="solid"
-          color="black"
-          class="w-[30%] justify-center text-white hover:bg-gray-500 text-3xl" style="he  "
-          >Submit</UButton
-        >
-      </div>
-        </div>
-
-        <div v-if="stepForm === Step.signupsucces" id="dSuccess"  class="flex flex-col m-12 h-full">
-          <span class="font-semibold font-sans text-5xl flex justify-center"> NICE!</span> 
-
-          <div class="flex justify-center mt-10">
-            <label class="font-sans text-3xl mt-4 whitespace-normal w-[85%] "> Your email account has been registered. Now you can login using your email account. Keep your credential safe and enjoy your shopping time.</label> 
-          </div>
-          <div class="w-full h-[8%] mt-[28%]  flex justify-center">
-          <NuxtLink to="/login" class="w-full flex justify-center" >
-      <UButton
-        variant="solid"
-        color="black" 
-        class="w-[40%] flex justify-center text-white hover:bg-gray-500 text-2xl" 
-        >Go to Login Page</UButton
+  <div class="w-full flex items-center justify-center h-full">
+    <div
+      class="rounded-[4rem] border w-[60%] py-2"
+      style="background-color: #ebeef3"
+    >
+      <div
+        v-if="stepForm === Step.signup"
+        id="dForm"
+        class="flex flex-col m-12 h-full gap-5"
       >
-    </NuxtLink>
+        <div class="font-bold font-sans text-4xl text-center">Sign Up</div>
+
+        <div class="flex flex-col gap-4">
+          <UFormGroup label="Nama">
+            <template #label="{ label }">
+              <p class="title">{{ label }}</p>
+            </template>
+            <UInput input-class="focus:ring-0 rounded-2xl" />
+          </UFormGroup>
+
+          <UFormGroup label="Email">
+            <template #label="{ label }">
+              <p class="title">{{ label }}</p>
+            </template>
+            <UInput input-class="focus:ring-0 rounded-2xl" />
+          </UFormGroup>
+
+          <UFormGroup label="Password">
+            <template #label="{ label }">
+              <p class="title">{{ label }}</p>
+            </template>
+            <UInput input-class="focus:ring-0 rounded-2xl" />
+          </UFormGroup>
+          <UFormGroup label="Confirm Password">
+            <template #label="{ label }">
+              <p class="title">{{ label }}</p>
+            </template>
+            <UInput input-class="focus:ring-0 rounded-2xl" />
+          </UFormGroup>
+
+          <UButton
+            id="btnSignUp"
+            @click="signUp"
+            variant="solid"
+            color="black"
+            class="px-5 justify-center text-white hover:bg-gray-500 mt-2"
+            style="he"
+            >Submit</UButton
+          >
+        </div>
+        <NuxtLink to="/login" class="hover:underline"
+          >Sudah Punya Akun</NuxtLink
+        >
+      </div>
+
+      <div
+        v-if="stepForm === Step.verif"
+        id="dVerif"
+        class="flex flex-col m-12 h-full gap-5 justify-center items-center"
+      >
+        <div class="font-bold font-sans text-4xl text-center">Verification</div>
+
+        <div class="font-sans text-lg whitespace-normal w-[85%] text-center">
+          Please verify your account on your email. Enter the codes we've sent
+          to your account.
+        </div>
+
+        <div class="flex justify-center">
+          <v-otp-input
+            ref="otpInput"
+            v-model:value="bindModal"
+            input-classes="w-10 border-2 border-black rounded-lg h-10 flex justify-center items-center text-2xl font-bold text-center"
+            separator="-"
+            :num-inputs="6"
+            :should-auto-focus="true"
+            input-type="letter-numeric"
+            :conditionalClass="['one', 'two', 'three', 'four', 'five', 'six']"
+            :placeholder="['*', '*', '*', '*', '*', '*']"
+            @on-change="handleOnChange"
+            @on-complete="handleOnComplete"
+          />
+        </div>
+        <div class="w-full h-[8%] flex justify-center">
+          <UButton
+            @click="verif"
+            variant="solid"
+            color="black"
+            class="justify-center text-white hover:bg-gray-500 text-lg px-5"
+            style="he  "
+            >Submit</UButton
+          >
+        </div>
+      </div>
+
+      <div
+        v-if="stepForm === Step.signupsucces"
+        id="dSuccess"
+        class="flex flex-col m-6 h-full items-center gap-4"
+      >
+        <span class="font-semibold font-sans text-3xl flex justify-center">
+          NICE!</span
+        >
+
+        <div class="font-sans text-xl whitespace-normal w-[85%] text-center">
+          Your email account has been registered. Now you can login using your
+          email account. Keep your credential safe and enjoy your shopping time.
+        </div>
+
+        <div class="w-full h-[8%] flex justify-center">
+          <NuxtLink to="/login" class="w-full flex justify-center">
+            <UButton
+              variant="solid"
+              color="black"
+              class="flex justify-center text-white hover:bg-gray-500 text-xl"
+              >Go to Login Page</UButton
+            >
+          </NuxtLink>
+        </div>
+      </div>
     </div>
-      </div>
-
-      </div>
   </div>
-
-
-
 </template>
 
-<style scoped></style>
+<style scoped>
+.title {
+  font-size: 1.2rem;
+  font-family: sans-serif;
+}
+</style>
