@@ -27,7 +27,7 @@ const items = {
 };
 
 definePageMeta({
-  layout: "products",
+  colorMode: "light",
 });
 </script>
 

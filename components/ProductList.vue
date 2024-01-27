@@ -11,7 +11,7 @@ const props = defineProps<{
 <template>
   <div class="px-24 py-8 w-full">
     <div class="w-full grid products-data">
-      <div v-for="i in props.datas">
+      <NuxtLink v-for="i in props.datas" :to="`/products/${i.product_name}`">
         <div class="gap-[0.1rem] flex flex-col">
           <img :src="i.image_link" alt="" class="border border-zinc-300" />
           <div class="w-full h-5 bg-zinc-300 rounded-b-xl"></div>
@@ -23,7 +23,7 @@ const props = defineProps<{
           <p>{{ i.price }}</p>
           <p>{{ i.status }}</p>
         </div>
-      </div>
+      </NuxtLink>
     </div>
     <Carousel :autoplay="2000" :wrap-around="true">
       <Slide v-for="slide in 10" :key="slide">

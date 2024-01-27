@@ -1,5 +1,9 @@
 import { UButton } from '../.nuxt/components';
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+definePageMeta({
+  colorMode: "light",
+});
+</script>
 
 <template>
   <div class="w-full flex items-center justify-center h-full">

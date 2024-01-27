@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { Gallery } from "~/type/model/product";
-
 const props = defineProps<{
   datas: Gallery[];
 }>();

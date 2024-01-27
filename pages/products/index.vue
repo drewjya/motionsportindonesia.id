@@ -34,8 +34,9 @@ const gridval = computed(() => {
 });
 
 definePageMeta({
-  layout: "products",
+  colorMode: "light",
 });
+
 const filterValue = ref();
 const sortBy = ref();
 </script>
@@ -56,6 +57,9 @@ const sortBy = ref();
   <div class="grid px-9 bg-gray-50 py-4 sticky item-filter">
     <div class="flex w-full">
       <UFormGroup label="Aturkan Berdasarkan" class="w-full">
+        <template #label="{ label }">
+          <p class="text-black">{{ label }}</p>
+        </template>
         <div class="flex">
           <UButton color="black" icon="i-heroicons-squares-2x2" />
           <USelectMenu
@@ -93,6 +97,9 @@ const sortBy = ref();
 
     <div class="flex w-full item">
       <UFormGroup label="Filter" class="w-full">
+        <template #label="{ label }">
+          <p class="text-black">{{ label }}</p>
+        </template>
         <div class="flex w-full">
           <UButton color="black" icon="i-heroicons-funnel" />
           <USelectMenu

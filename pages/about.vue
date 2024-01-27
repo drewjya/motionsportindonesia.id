@@ -1,4 +1,3 @@
-import { Style } from '../.nuxt/components';
 <script lang="ts" setup>
 const containerRef = ref();
 const imageRef = ref();
@@ -6,6 +5,9 @@ const imageRef = ref();
 const circleRef1 = ref();
 const circleRef2 = ref();
 const circleRef3 = ref();
+definePageMeta({
+  colorMode: "light",
+});
 
 const handleOnScroll = () => {
   const val = containerRef.value;

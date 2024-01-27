@@ -45,7 +45,7 @@ const gallery_items = ref<Gallery[]>([
 const sortValues = ["Price", "Name", "Date"];
 const sortBy = ref();
 definePageMeta({
-  layout: "products",
+  colorMode: "light",
 });
 </script>
 

@@ -1,8 +1,8 @@
-import { UButton } from '../.nuxt/components';
 <script lang="ts" setup>
-import { ref } from "vue";
-
 import VOtpInput from "vue3-otp-input";
+definePageMeta({
+  colorMode: "light",
+});
 
 enum Step {
   signup,
