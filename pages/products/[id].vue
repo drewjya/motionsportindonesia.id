@@ -11,6 +11,9 @@ beforeEach((to, from, next) => {
   next();
 });
 
+const options = ["XL", "L", "M", "S"];
+const selected = ref(options[0]);
+
 const items = {
   name: "PERBANAS JERSEY",
   desc: "A new made T-Shirt inspired by Andre Wijaya's brilliant idea as a creator of carried mage in Mobile Legends",
@@ -28,170 +31,127 @@ const items = {
 
 definePageMeta({
   colorMode: "light",
+  layout: "cart",
 });
 </script>
 
 <template>
-  <div class="w-full flex">
-    <!-- Left-->
-    <!-- Product Image and Desc -->
-    <div id="productImg" class="flex w-3/6 flex-col mt-24">
-      <div class="w-full flex justify-scenter">
-        <img
-          class="m-auto"
-          src="~/assets/product-details.png"
-          alt=""
-          width="500"
-          height="500"
-        />
+  <div class="w-full h-full pt-12 flex flex-col">
+    <div class="grow grid grid-cols-2 px-12 gap-8 overflow-y-auto">
+      <div class="img-proudct">
+        <img src="/product-details.png" alt="" class="w-80" />
+        <p class="font-semibold text-xl">Product Description</p>
+        <p>{{ items.desc }}</p>
       </div>
-      <div id="productDesc" class="font-sans my-8 flex justify-center">
-        <div class="mx-auto min-w-[500px] max-w-[500px]">
-          <p class="font-semibold text-xl">Product Description</p>
-          <p>{{ items.desc }}</p>
+      <div class="product-data">
+        <div class="pb-2">
+          <p class="text-xl font-bold">Perbanas Jersey</p>
         </div>
-      </div>
-    </div>
+        <div class="cartegory">
+          <div>T-Shirt</div>
+          <div>Serial Code</div>
+        </div>
+        <div class="flex gap-2">
+          <p>Price</p>
+          <p>Rp. 1.000.000</p>
+        </div>
+        <div class="flex gap-2">
+          <div class="px-1 py-0.5 bg-gray-300 rounded-md">Free Ongkir</div>
+          <div class="px-1 py-0.5 bg-gray-300 rounded-md">Promo Code</div>
+        </div>
+        <div>
+          <UFormGroup label="Size" class="pt-2">
+            <template #label="{ label }">
+              <p class="text-base font-semibold">{{ label }}</p>
+            </template>
+            <USelectMenu v-model="selected" :options="options" class="w-40" />
+          </UFormGroup>
+        </div>
+        <UFormGroup label="Quantity" class="pt-2">
+          <template #label="{ label }">
+            <p class="text-base font-semibold">{{ label }}</p>
+          </template>
+          <div class="flex items-center gap-2">
+            <UButton
+              icon="i-heroicons-plus"
+              size="sm"
+              class="!bg-gray-400 !text-white"
+              square
+              variant="solid"
+            />
+            <UInput
+              color="black"
+              input-class="!bg-white focus:ring-0 border border-black w-20 text-center"
+            />
+            <UButton
+              icon="i-heroicons-minus"
+              size="sm"
+              class="!bg-gray-400 !text-white"
+              square
+              variant="solid"
+            />
+          </div>
+        </UFormGroup>
 
-    <!-- Right-->
-    <div id="productDetail" class="ml-16 mt-24 w-3/6">
-      <!-- Product Name and Tag -->
-      <div id="productName" class="font-semibold font-sans text-4xl my-2">
-        {{ items.name }}
-        <div class="flex flex-wrap">
+        <div>
           <div
-            v-for="(e, index) in items.tag"
-            class="border border-solid border-black w-32 h-8 rounded-full mt-4 mr-6 text-center text-base"
+            class="flex bg-white border border-black rounded-3xl w-max text-xs mt-2"
           >
-            {{ e }}
+            <button class="px-2 py-1 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                />
+              </svg>
+
+              <p>Add To Cart</p>
+            </button>
+            <button
+              class="px-5 py-1 bg-gray-400 rounded-3xl border-l border-black flex items-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                />
+              </svg>
+              <p>Buy Now</p>
+            </button>
           </div>
         </div>
       </div>
-
-      <!-- Product Price and Promo -->
-      <div class="flex text-xl mt-6">
-        PRICE :
-        <div class="font-bold font-sans ml-2">Rp. {{ items.price }}</div>
-      </div>
-      <div class="flex flex-wrap font-semibold mt-2">
-        <div
-          v-for="(e, index) in items.promo"
-          class="bg-gray-300 flex text-center items-center w-32 h-8 mr-4 file:rounded-sm mb-4"
-        >
-          <div class="m-auto">{{ e }}</div>
-        </div>
-      </div>
-
-      <!-- Size -->
-      <div class="flex flex-col text-2xl mt-6 font-semibold font-sans">
-        Size
-      </div>
-      <div class="w-1/2 relative text-center text-lg">
-        <select
-          id="size"
-          name="size"
-          class="mt-1 p-2 pl-6 pr-8 border rounded-full w-full appearance-none"
-        >
-          <option value="S">S (Small)</option>
-          <option value="M">M (Medium)</option>
-          <option value="L">L (Large)</option>
-          <option value="XL">XL (Extra Large)</option>
-          <option value="XXL">XXL (2 Extra Large)</option>
-          <option value="XXXL">XXXL (3 Extra Large)</option>
-        </select>
-        <!-- <div
-          class=" inset-y-0 right-4 flex items-center px-2 pointer-events-none"
-        >
-          <div class="h-4/6 w-[2px] bg-gray-200 mt-1 mr-2"></div>
-          <svg
-            class="h-4 w-4 text-gray-500 ml-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            ></path>
-          </svg>
-        </div> -->
-      </div>
-
-      <!-- Quantity -->
-      <div class="flex flex-col text-2xl mt-6 font-semibold font-sans">
-        Quantity
-      </div>
-      <div class="w-1/2 relative text-center text-lg">
-        <select
-          id="qty"
-          name="qty"
-          class="mt-1 p-2 pl-6 pr-8 border rounded-full w-full appearance-none"
-        >
-          <option v-for="index in 50" :value="index + 1">
-            {{ index + 1 }}
-          </option>
-        </select>
-        <!-- <div
-          class="absolute inset-y-0 right-4 flex items-center px-2 pointer-events-none"
-        >
-          <div class="h-4/6 w-[2px] bg-gray-200 mt-1 mr-2"></div>
-          <svg
-            class="h-4 w-4 text-gray-500 ml-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            ></path>
-          </svg>
-        </div> -->
-      </div>
-
-      <!-- Button -->
-      <div class="rounded-full overflow-hidden border w-1/2 mt-8 h-12 relative">
-        <NuxtLink to="/cart">
-          <UButton
-            color="white"
-            class="rounded-full w-6/12 h-full text-lg text-semibold hover:bg-gray-300 focus:bg-gray-300"
-          >
-            <div class="mx-auto items-center">
-              <img
-                src="~/assets/icons/icon-add-to-cart.svg"
-                alt=""
-                class="left-5"
-                width="29"
-              />
-              <p>Add to Cart</p>
-            </div>
-          </UButton>
-        </NuxtLink>
-        <NuxtLink to="/cart">
-          <UButton
-            color="gray"
-            class="rounded-full right-0 w-7/12 h-full text-lg text-semibold hover:bg-gray-300 focus:bg-gray-300"
-          >
-            <div class="mx-auto items-center">
-              <img
-                src="~/assets/icons/icon-buy-now.svg"
-                alt=""
-                class="left-6"
-                width="32"
-              />
-              <p>Buy Now</p>
-            </div>
-          </UButton>
-        </NuxtLink>
-      </div>
     </div>
+
+    <Footer></Footer>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.cartegory {
+  display: flex;
+  gap: 1rem;
+  font-weight: 600;
+}
+.cartegory div {
+  padding: 0.2rem 1rem;
+  border: 1px solid #000;
+  border-radius: 1rem;
+}
+</style>
