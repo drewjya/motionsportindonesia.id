@@ -143,6 +143,11 @@ definePageMeta({
       >
       <div class="flex gap-4">
         <UButton
+          @click="
+            () => {
+              router.go(-1);
+            }
+          "
           label="Back"
           icon="i-heroicons-arrow-left"
           color="black"
@@ -150,13 +155,15 @@ definePageMeta({
           :trailing="false"
           class="px-6"
         />
-        <UButton
-          label="Check Out"
-          color="black"
-          trailing-icon="i-heroicons-shopping-bag"
-          variant="solid"
-          class="px-6"
-        />
+        <NuxtLink to="/checkout">
+          <UButton
+            label="Check Out"
+            color="black"
+            trailing-icon="i-heroicons-shopping-bag"
+            variant="solid"
+            class="px-6"
+          />
+        </NuxtLink>
       </div>
     </div>
     <div class="px-8 flex justify-between pb-2 text-black items-center">
