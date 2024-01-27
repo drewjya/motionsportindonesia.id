@@ -173,7 +173,7 @@ definePageMeta({
       </div>
     </div>
     <div class="h-[calc(100%-6.5rem)] bg-yellow-300 overflow-y-auto">
-      <div class="flex flex-col gap-[0.35rem] bg-gray-100 px-2">
+      <div class="flex flex-col gap-[0.35rem] bg-gray-100 px-2 pb-4">
         <CartItem
           v-for="i in cartItems"
           :product="i"
