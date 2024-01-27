@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-import { definePageMeta } from "nuxt/dist/pages/runtime";
-import { onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
-
 const { getRoutes, beforeEach } = useRouter();
 const { redirectedFrom } = useRoute();
 onMounted(() => {
