@@ -1,49 +1,10 @@
 <script lang="ts" setup>
-import type { Gallery } from "~/type/model/product";
-
-const items = [
-  [
-    {
-      label: "Profile",
-      avatar: {
-        src: "https://avatars.githubusercontent.com/u/739984?v=4",
-      },
-    },
-  ],
-];
-
-const gallery_items = ref<Gallery[]>([
-  {
-    url: "/gallery/gallery-item1.png",
-    title: "Ballers wear motion sports on court",
-    preview:
-      "Trainer and fam are attending basketball match with basketball jerseys made in Indonesia. this brand is ...",
-    tanggal: "20 Sept 2023",
-  },
-  {
-    url: "/gallery/gallery-item1.png",
-    title: "Ballers wear motion sports on court",
-    preview:
-      "Trainer and fam are attending basketball match with basketball jerseys made in Indonesia. this brand is ...",
-    tanggal: "20 Sept 2023",
-  },
-  {
-    url: "/gallery/gallery-item1.png",
-    title: "Ballers wear motion sports on court",
-    preview:
-      "Trainer and fam are attending basketball match with basketball jerseys made in Indonesia. this brand is ...",
-    tanggal: "20 Sept 2023",
-  },
-  {
-    url: "/gallery/gallery-item1.png",
-    title: "Ballers wear motion sports on court",
-    preview:
-      "Trainer and fam are attending basketball match with basketball jerseys made in Indonesia. this brand is ...",
-    tanggal: "20 Sept 2023",
-  },
-]);
 const sortValues = ["Price", "Name", "Date"];
 const sortBy = ref();
+const galleryStore = useGalleryStore();
+onMounted(() => {
+  galleryStore.fetchData();
+});
 definePageMeta({
   colorMode: "light",
 });
@@ -88,16 +49,18 @@ definePageMeta({
         </div>
       </UFormGroup>
     </div>
-    <div class="px-14">
+    <div class="">
       <div class="w-full">
         <p
-          class="w-max border-2 border-solid border-black p-2 text-sm font-semibold"
+          class="w-max border-2 border-solid border-black p-2 text-sm font-semibold mx-14"
           style="font-family: 'DM Sans', sans-serif"
         >
           Galleri Terbaru
         </p>
-        <GalleryList :datas="gallery_items" />
-        <div class="flex justify-between py-2 pb-16">
+        <div>
+          <GalleryList :state="galleryStore.galleryState" />
+        </div>
+        <div class="flex justify-between py-2 pb-16 mx-16">
           <UButton
             variant="solid"
             color="black"

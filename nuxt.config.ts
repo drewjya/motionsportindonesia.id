@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   colorMode: { preference: "light", fallback: "light" },
   modules: [
     "@nuxt/ui",
@@ -9,7 +10,21 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@vueuse/nuxt",
   ],
-
+  devServer: {
+    port: 3100,
+  },
+  imports: {
+    dirs: [
+      "composables",
+      "composables/functions",
+      "composables/store",
+      "composables/stores",
+      "utils/functions",
+      "utils/types/dto",
+      "utils/types",
+    ],
+    autoImport: true,
+  },
   googleFonts: {
     families: {
       "Jockey One": true,
@@ -19,25 +34,9 @@ export default defineNuxtConfig({
       ABeeZee: true,
     },
   },
-
-  image: {
-    dir: "assets",
+  runtimeConfig: {
+    public: {
+      SERVER_URL: "https://api.motionsportindonesia.id",
+    },
   },
 });
-
-// import svgLoader from "vite-svg-loader";
-
-// // https://nuxt.com/docs/api/configuration/nuxt-config
-// export default defineNuxtConfig({
-//   devtools: { enabled: true },
-//   modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxtjs/google-fonts"],
-//   googleFonts: {
-//     families: {
-//       "Jockey One": true,
-//       "DM Sans": true,
-//     },
-//   },
-//   vite: {
-//     plugins: [svgLoader()],
-//   },
-// });

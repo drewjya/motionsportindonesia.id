@@ -1,51 +1,25 @@
 <script lang="ts" setup>
-import type { Gallery } from "~/type/model/product";
+import type { Gallery } from "~/type/model/gallery";
+import type { State } from "~/type/response/server_response";
+
 const props = defineProps<{
-  datas: Gallery[];
+  state: State<Gallery[] | undefined>;
 }>();
 </script>
 
 <template>
   <div class="py-3 flex flex-col gap-2">
-    <div v-for="(i, index) in props.datas">
-      <div class="grid gallery_grid">
-        <div class="flex">
-          <div class="relative">
-            <img :src="i.url" class="gallery-image" :alt="`Image ${index}`" />
-            <div
-              class="absolute shadow h-full bottom-0 bg-gradient-to-t from-black via-opacity-8 to-transparent"
-            ></div>
-            <p
-              class="text-white text-2xl font-normal capitalize absolute bottom-0 z-[99] px-10 pb-8"
-              style="font-family: Jockey One"
-            >
-              {{ i.title }}
-            </p>
-          </div>
-        </div>
-
-        <div class="flex flex-col justify-between">
-          <div class="p-2 px-5">
-            <p
-              class="text-black text-base font-bold capitalize"
-              style="font-family: DM Sans"
-            >
-              {{ i.tanggal }}
-            </p>
-            <div class="text-sm capitalize text-justify">
-              {{ i.preview }}
-            </div>
-          </div>
-          <div>
-            <div class="bg-gradient-to-b from-transparent to-gray-300 p-5">
-              <div
-                class="text-black text-xl font-normal italic capitalize"
-                style="font-family: ABeeZee"
-              >
-                BACA SELENGKAPNYA >>
-              </div>
-            </div>
-          </div>
+    <div
+      v-if="props.state.loading"
+      class="flex justify-center items-center h-32"
+    >
+      <p>Loading</p>
+    </div>
+    <div v-else-if="props.state.data">
+      <div v-if="props.state.data.length === 0"></div>
+      <div v-else class="flex flex-col divide-y-2">
+        <div v-for="(i, index) in props.state.data" class="px-10">
+          <GalleryItem :item="i" />
         </div>
       </div>
     </div>

@@ -1,36 +1,11 @@
 <script lang="ts" setup>
-import type { Product } from "~/type/model/product";
-
-const items = [
-  [
-    {
-      label: "Profile",
-      avatar: {
-        src: "https://avatars.githubusercontent.com/u/739984?v=4",
-      },
-    },
-  ],
-];
-
 const filter = ["Available", "Sold Out"];
 const sortValues = ["Price", "Name", "Date"];
-let datas = ref<Product[]>([]);
-onMounted(() => {
-  for (let i = 0; i < 12; i++) {
-    datas.value.push({
-      product_name: "Product " + i,
-      price: (10000 * (1 + i)).toLocaleString("en-US", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }),
-      image_link: "https://avatars.githubusercontent.com/u/739984?v=4",
-      status: i % 2 == 0 ? "Sold Out" : "Available",
-    });
-  }
-});
 
-const gridval = computed(() => {
-  return Math.round(datas.value.length / 4);
+const productStore = useProductsStore();
+
+onMounted(() => {
+  productStore.fetchData();
 });
 
 definePageMeta({
@@ -136,7 +111,7 @@ const sortBy = ref();
     </div>
   </div>
 
-  <ProductList :datas="datas" />
+  <ProductList :state="productStore.productState"  />
 </template>
 
 <style scoped>
