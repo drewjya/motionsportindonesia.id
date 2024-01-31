@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 const { getRoutes, beforeEach } = useRouter();
-const { redirectedFrom } = useRoute();
+const { redirectedFrom, params } = useRoute();
+const productStore = useProductDetailStore(Number(`${params.id}`))();
+const quantity = ref(1);
 onMounted(() => {
-  console.log(getRoutes());
-  console.log(redirectedFrom);
+  productStore.fetchData();
 });
 beforeEach((to, from, next) => {
   console.log(to);
@@ -14,46 +15,63 @@ beforeEach((to, from, next) => {
 const options = ["XL", "L", "M", "S"];
 const selected = ref(options[0]);
 
-const items = {
-  name: "PERBANAS JERSEY",
-  desc: "A new made T-Shirt inspired by Andre Wijaya's brilliant idea as a creator of carried mage in Mobile Legends",
-  image: [
-    "https://avatars.githubusercontent.com/u/739984?v=4",
-    "https://avatars.githubusercontent.com/u/739984?v=4",
-  ],
-  tag: ["S-Shirt", "SERIAL CODE"],
-  price: (1000000).toLocaleString("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }),
-  promo: ["Free Ongkir", "Promo Code"],
-};
-
 definePageMeta({
   colorMode: "light",
   layout: "cart",
 });
+
+const price = computed(
+  () => Number(quantity.value) * (productStore.productState.data?.price ?? 0)
+);
 </script>
 
 <template>
   <div class="w-full h-full pt-12 flex flex-col">
-    <div class="grow grid grid-cols-2 px-12 gap-8 overflow-y-auto">
+    <div
+      class="grow grid grid-cols-2 px-12 gap-8 overflow-y-auto"
+      v-if="productStore.productState.data"
+    >
       <div class="img-proudct">
-        <img src="/product-details.png" alt="" class="w-80" />
+        <img :src="productStore.productState.data.image" alt="" class="w-80" />
         <p class="font-semibold text-xl">Product Description</p>
-        <p>{{ items.desc }}</p>
+        <p>{{ productStore.productState.data.description }}</p>
       </div>
       <div class="product-data">
         <div class="pb-2">
-          <p class="text-xl font-bold">Perbanas Jersey</p>
+          <p class="text-xl font-bold">
+            {{ productStore.productState.data.name }}
+          </p>
         </div>
         <div class="cartegory">
-          <div>T-Shirt</div>
-          <div>Serial Code</div>
+          <div v-for="i in productStore.productState.data.categories">
+            {{ i.name }}
+          </div>
+        </div>
+        <div>
+          <div
+            class="w-max"
+            style="
+              margin-top: 10px;
+              padding: 0.2rem 1rem;
+              border: 1px solid #000;
+              border-radius: 1rem;
+            "
+          >
+            <div>{{ productStore.productState.data.serial_code }}</div>
+          </div>
         </div>
         <div class="flex gap-2">
           <p>Price</p>
-          <p>Rp. 1.000.000</p>
+
+          <p class="transition-all">
+            Rp.
+            {{
+              price.toLocaleString("id-IN", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2,
+              })
+            }}
+          </p>
         </div>
         <div class="flex gap-2">
           <div class="px-1 py-0.5 bg-gray-300 rounded-md">Free Ongkir</div>
@@ -71,24 +89,46 @@ definePageMeta({
           <template #label="{ label }">
             <p class="text-base font-semibold">{{ label }}</p>
           </template>
+
           <div class="flex items-center gap-2">
             <UButton
               icon="i-heroicons-plus"
               size="sm"
+              :disabled="quantity === productStore.productState.data?.stock"
               class="!bg-gray-400 !text-white"
               square
+              @click="
+                () => {
+                  quantity += 1;
+                }
+              "
               variant="solid"
             />
-            <UInput
-              color="black"
-              input-class="!bg-white focus:ring-0 border border-black w-20 text-center"
+
+            <Quantity
+              class-input="!bg-white focus:ring-0 border border-black w-20 text-center"
+              :init-value="0"
+              :max-val="productStore.productState.data?.stock"
+              :raw-value="quantity"
+              @update:raw-value="
+                (value) => {
+                  quantity = value;
+                }
+              "
             />
+
             <UButton
               icon="i-heroicons-minus"
               size="sm"
               class="!bg-gray-400 !text-white"
               square
               variant="solid"
+              :disabled="quantity === 1"
+              @click="
+                () => {
+                  quantity -= 1;
+                }
+              "
             />
           </div>
         </UFormGroup>
@@ -150,7 +190,8 @@ definePageMeta({
 <style scoped>
 .cartegory {
   display: flex;
-  gap: 1rem;
+  gap: 0.4rem;
+  flex-wrap: wrap;
   font-weight: 600;
 }
 .cartegory div {

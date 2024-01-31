@@ -18,8 +18,8 @@ const items = {
   qty: ref(2),
 };
 const getPrice = (): string => {
-  return (items.qty.value * items.price.value).toLocaleString("en-US", {
-    minimumFractionDigits: 2,
+  return (items.qty.value * items.price.value).toLocaleString("id-IN", {
+    minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   });
 };
@@ -39,7 +39,7 @@ const back = () => {
   router.go(-1);
 };
 
-type Product = {
+type OldProduct = {
   nama: string;
   category: string;
   serialCode: string;
@@ -51,7 +51,7 @@ type Product = {
   quantity: number;
 };
 
-const cartItems = <Product[]>[
+const cartItems = <OldProduct[]>[
   {
     category: "T-Shirt",
     desc: "BLACK, PURPLE CO",

@@ -30,7 +30,6 @@ const handleOnScroll = () => {
 </script>
 
 <template>
-  <div class="w-screen"></div>
   <div class="h-[calc(80vh)] relative py-20">
     <div
       ref="circleRef1"

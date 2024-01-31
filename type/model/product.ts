@@ -1,13 +1,15 @@
 export type Product = {
-  product_name: string;
-  price: string;
-  status: string;
-  image_link: string;
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  image: string;
+  serial_code: string;
+  categories?: Category[];
 };
 
-export type Gallery = {
-  url: string;
-  title: string;
-  preview: string;
-  tanggal: string;
+export type Category = {
+  id: number;
+  name: string;
 };
