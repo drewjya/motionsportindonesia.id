@@ -23,8 +23,8 @@ const getPrice = (qty: number, price: number): string => {
 </script>
 
 <template>
-  <div class="text-black mx-5 px-4 bg-white py-2 rounded-md border">
-    <div class="flex gap-5">
+  <div class="text-black mx-5 px-4 bg-white py-2 rounded-md border ">
+    <div class="flex gap-10">
       <img
         :src="`${props.product.image}`"
         :alt="props.product.nama"
@@ -43,28 +43,9 @@ const getPrice = (qty: number, price: number): string => {
           Rp {{ getPrice(props.product.price, props.product.quantity) }}
         </p>
         <div class="flex gap-5 items-center">
-          <UButton
-            icon="i-heroicons-trash"
-            size="sm"
-            class="!bg-black !text-white"
-            square
-            variant="solid"
-          />
-          <UButton
-            icon="i-heroicons-plus"
-            size="sm"
-            class="!bg-gray-400 !text-white"
-            square
-            variant="solid"
-          />
-          <div>{{ props.product.quantity }}</div>
-          <UButton
-            icon="i-heroicons-minus"
-            size="sm"
-            class="!bg-gray-400 !text-white"
-            square
-            variant="solid"
-          />
+         
+          <div>{{ props.product.quantity }} X</div>
+    
         </div>
       </div>
     </div>
