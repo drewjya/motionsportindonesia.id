@@ -1,21 +1,13 @@
 <script lang="ts" setup>
+import type { Cart, Category } from "~/type/model/product";
+
 type CartItemProps = {
-  product: OldProduct;
-  onIncrement: (product: OldProduct) => void;
-  onDecrement: (product: OldProduct) => void;
-  onRemove: (product: OldProduct) => void;
+  cartItem: Cart;
+  onIncrement: (cartItem: Cart) => void;
+  onDecrement: (cartItem: Cart) => void;
+  onRemove: (cartItem: Cart) => void;
 };
-type OldProduct = {
-  nama: string;
-  category: string;
-  serialCode: string;
-  price: number;
-  sizeList: string[];
-  size: string;
-  desc: string;
-  image: string;
-  quantity: number;
-};
+
 const props = defineProps<CartItemProps>();
 const getPrice = (qty: number, price: number): string => {
   return (qty * price).toLocaleString("id-IN", {
@@ -27,29 +19,34 @@ const getPrice = (qty: number, price: number): string => {
 
 <template>
   <div class="text-black mx-5 px-4 bg-white py-2 rounded-md border">
-    <div class="grid-val gap-5 ">
-      <div class="flex fl">
+    <div class="grid-val gap-5">
+      <div class="flex fl gap-5">
         <div class="flex items-center">
           <UCheckbox />
         </div>
         <img
-          :src="`${props.product.image}`"
-          :alt="props.product.nama"
+          :src="`${props.cartItem.product.image}`"
+          :alt="props.cartItem.product.name"
           class="w-40"
         />
       </div>
       <div class="flex fr">
         <div class="flex flex-col">
-          <h2 class="font-bold">{{ props.product.nama }}</h2>
+          <h2 class="font-bold">{{ props.cartItem.product.name }}</h2>
           <div class="keterangan">
-            <p>{{ props.product.category }}</p>
-            <p>{{ props.product.serialCode }}</p>
+            <p v-for="i in (props.cartItem.product.categories??<Category[]>[])">
+              {{ i.name }}
+            </p>
+            <p>{{ props.cartItem.product.serial_code }}</p>
           </div>
-          <p>{{ props.product.size }}, {{ props.product.desc }}</p>
+          <p>{{ "XL" }}, {{ props.cartItem.product.description }}</p>
         </div>
         <div class="grow flex flex-col items-end justify-end gap-4">
           <p class="text-sm font-bold">
-            Rp {{ getPrice(props.product.price, props.product.quantity) }}
+            Rp
+            {{
+              getPrice(props.cartItem.product.price, props.cartItem.quantity)
+            }}
           </p>
           <div class="flex gap-5 items-center">
             <UButton
@@ -66,7 +63,7 @@ const getPrice = (qty: number, price: number): string => {
               square
               variant="solid"
             />
-            <div>{{ props.product.quantity }}</div>
+            <div>{{ props.cartItem.quantity }}</div>
             <UButton
               icon="i-heroicons-minus"
               size="sm"

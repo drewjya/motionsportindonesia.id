@@ -123,6 +123,11 @@ const cartItems = <OldProduct[]>[
 definePageMeta({
   layout: "cart",
 });
+
+const cartProvider = useCartStore();
+onMounted(() => {
+  cartProvider.fetchCart();
+});
 </script>
 
 <template>
@@ -179,11 +184,21 @@ definePageMeta({
         />
       </div>
     </div>
-    <div class="h-[calc(100%-6.5rem)] bg-yellow-300 overflow-y-auto">
-      <div class="flex flex-col gap-[0.35rem] bg-gray-100 px-2 pb-4">
+
+    <div class="h-[calc(100%-6.54rem)] bg-yellow-300 overflow-y-auto">
+      <div
+        class="flex flex-col gap-[0.35rem] bg-gray-100 px-2 pb-4"
+        v-if="
+          cartProvider.cartState.data !== undefined ||
+          cartProvider.cartState.data !== null
+        "
+      >
         <CartItem
-          v-for="i in cartItems"
-          :product="i"
+          v-for="(item, index) in [
+            ...cartProvider.cartState.data,
+            ...cartProvider.cartState.data,
+          ]"
+          :cart-item="item"
           :on-decrement="(data) => {}"
           :on-increment="(data) => {}"
           :on-remove="(data) => {}"

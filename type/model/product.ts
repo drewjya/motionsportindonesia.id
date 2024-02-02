@@ -13,3 +13,9 @@ export type Category = {
   id: number;
   name: string;
 };
+
+export type Cart = {
+  id: number;
+  quantity: number;
+  product: Product;
+};

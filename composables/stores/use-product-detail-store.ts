@@ -4,6 +4,7 @@ import type { State } from "~/type/response/server_response";
 export const useProductDetailStore = (id: number) =>
   defineStore("product-detail-store-data" + id.toString(), () => {
     const { serverUrl } = apiPath();
+    const { getAuthorization } = useAuthStore();
     const productState = ref<State<Product | undefined>>({
       loading: true,
       data: undefined,
@@ -24,8 +25,22 @@ export const useProductDetailStore = (id: number) =>
       };
     };
 
+    const postCart = async (quantity: number) => {
+      productState.value.loading = true;
+      const val = await apiFetch<Product>(`/cart`, {
+        method: "POST",
+        baseUrl: serverUrl,
+        headers: getAuthorization(),
+        body: {
+          productId: id,
+          quantity: quantity,
+        },
+      });
+    };
+
     return {
       productState,
       fetchData,
+      postCart,
     };
   });
