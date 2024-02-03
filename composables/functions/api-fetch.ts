@@ -27,12 +27,21 @@ export async function apiFetch<T>(
       message: req.messages,
     };
   } catch (error) {
-    const err: VResponse<T> = (error as any).response._data;
-    return {
-      loading: false,
-      meta: err.meta,
-      data: undefined,
-      error: err.messages,
-    };
+    try {
+      const err: VResponse<T> = (error as any).response._data;
+      return {
+        loading: false,
+        meta: err.meta,
+        data: undefined,
+        error: err.messages,
+      };
+    } catch (erv) {
+      return {
+        loading: false,
+        meta: undefined,
+        data: undefined,
+        error: `${erv}`,
+      };
+    }
   }
 }

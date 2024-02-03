@@ -35,15 +35,17 @@ export const useAuthStore = defineStore("auth-store", () => {
   };
 
   const refresh = async () => {
-    const val = await apiFetch<any>(serverUrl + "/auth/refresh", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${refreshCookie.value}`,
-      },
-    });
-    accessCookie.value = val.data.access_token;
-    refreshCookie.value = val.data.refresh_token;
+    if (refreshCookie.value) {
+      const val = await apiFetch<any>(serverUrl + "/auth/refresh", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${refreshCookie.value}`,
+        },
+      });
+      accessCookie.value = val.data.access_token;
+      refreshCookie.value = val.data.refresh_token;
+    }
   };
 
   const login = async (password: string, email: string) => {
