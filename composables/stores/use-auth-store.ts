@@ -30,8 +30,8 @@ export const useAuthStore = defineStore("auth-store", () => {
         Authorization: `Bearer ${accessCookie.value}`,
       };
     }
-    // return {};
-    throw new Error("No access token");
+
+    return {};
   };
 
   const refresh = async () => {
@@ -45,7 +45,9 @@ export const useAuthStore = defineStore("auth-store", () => {
       });
       accessCookie.value = val.data.access_token;
       refreshCookie.value = val.data.refresh_token;
+      return true;
     }
+    return false;
   };
 
   const login = async (password: string, email: string) => {

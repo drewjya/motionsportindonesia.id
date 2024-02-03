@@ -194,10 +194,7 @@ onMounted(() => {
         "
       >
         <CartItem
-          v-for="(item, index) in 
-            
-            cartProvider.cartState.data,
-          "
+          v-for="item in cartProvider.cartState.data"
           :cart-item="item"
           :on-decrement="(data) => {}"
           :on-increment="(data) => {}"
