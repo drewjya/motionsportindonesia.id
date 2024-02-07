@@ -146,7 +146,7 @@ onMounted(() => {
           >Shop For More</UButton
         ></NuxtLink
       >
-      <div class="flex gap-4">
+      <!-- <div class="flex gap-4">
         <UButton
           @click="
             () => {
@@ -160,16 +160,8 @@ onMounted(() => {
           :trailing="false"
           class="px-6"
         />
-        <NuxtLink to="/checkout">
-          <UButton
-            label="Check Out"
-            color="black"
-            trailing-icon="i-heroicons-shopping-bag"
-            variant="solid"
-            class="px-6"
-          />
-        </NuxtLink>
-      </div>
+     
+      </div> -->
     </div>
     <div class="px-8 flex justify-between pb-2 text-black items-center">
       <div class="flex items-center gap-3">
@@ -180,14 +172,14 @@ onMounted(() => {
         <UButton
           label="Hapus Semua"
           trailing-icon="i-heroicons-trash"
-          color="black"
+          color="gray"
         />
       </div>
     </div>
 
-    <div class="h-[calc(100%-6.54rem)] bg-yellow-300 overflow-y-auto">
+    <div class="min-h-[calc(80%-6.7rem)]  overflow-y-auto">
       <div
-        class="flex flex-col gap-[0.35rem] bg-gray-100 px-2 pb-4"
+        class="flex flex-col gap-[0.35rem]px-2 pb-4"
         v-if="
           cartProvider.cartState.data !== undefined ||
           cartProvider.cartState.data !== null
@@ -200,9 +192,19 @@ onMounted(() => {
           :on-increment="(data) => {}"
           :on-remove="(data) => {}"
         />
+        
+        <NuxtLink to="/checkout" class="flex justify-end mt-8 px-8">
+          <UButton
+            label="Check Out"
+            color="black"
+            trailing-icon="i-heroicons-shopping-bag"
+            variant="solid"
+            class="px-6"
+          />
+        </NuxtLink>
       </div>
-      <Footer />
     </div>
+    <Footer />
   </div>
 </template>
 

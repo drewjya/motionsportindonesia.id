@@ -26,20 +26,20 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="pz-1">
-    <div class="flex gap-5 h-max">
-      <div class="my-auto">
+  <div class="pz-1 flex justify-center">
+    <div class="flex gap-5 h-max w-[75%]  border border-solid rounded-xl border-gray-500">
+      <div class="m-5">
         <img
           :src="props.item.image"
           :alt="props.item.title + `${props.item.id}`"
           class="img"
         />
       </div>
-      <div class="flex justify-between flex-col">
+      <div class="flex justify-between flex-col m-5 ">
         <div class="title">{{ props.item.title }}</div>
         <div class="grow flex flex-col justify-end">
-          <div class="text-sm text-gray-500" v-html="limitedContent"></div>
-          <div class="text-xs text-gray-500 font-extralight">
+          <div class="text-md text-gray-500 " v-html="limitedContent"></div>
+          <div class="text-s text-gray-500 font-extralight">
             {{ props.item.tanggal }}
           </div>
         </div>
@@ -55,8 +55,8 @@ onMounted(() => {
   font-weight: 700;
 }
 .img {
-  width: 10rem;
-  height: 10rem;
+  width: 17rem;
+  height: 12rem;
 
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -64,8 +64,8 @@ onMounted(() => {
 }
 
 .pz-1 {
-  padding-top: 2.25rem /* 4px */;
-  padding-bottom: 2.25rem /* 4px */;
+  padding-top: 1rem /* 4px */;
+  padding-bottom: 1rem /* 4px */;
 }
 
 @media (max-width: 640px) {
