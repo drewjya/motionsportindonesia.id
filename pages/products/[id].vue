@@ -27,11 +27,11 @@ const price = computed(
 <template>
   <div class="w-full h-full pt-12 flex flex-col">
     <div
-      class="grow grid grid-cols-2 px-12 gap-8 overflow-y-auto"
+      class="grow grid grid-cols-2 mx-44 gap-12 overflow-y-auto"
       v-if="productStore.productState.data"
     >
       <div class="img-proudct">
-        <img :src="productStore.productState.data.image" alt="" class="w-80" />
+        <img :src="productStore.productState.data.image" alt="" class="w-[75%]" />
         <p class="font-semibold text-xl">Product Description</p>
         <p>{{ productStore.productState.data.description }}</p>
       </div>
@@ -41,16 +41,16 @@ const price = computed(
             {{ productStore.productState.data.name }}
           </p>
         </div>
-        <div class="cartegory">
+        <div class="flex flex-wrap ">
+        <div class="cartegory my-2">
           <div v-for="i in productStore.productState.data.categories">
             {{ i.name }}
           </div>
         </div>
-        <div>
+        <div class="my-2">
           <div
             class="w-max"
             style="
-              margin-top: 10px;
               padding: 0.2rem 1rem;
               border: 1px solid #000;
               border-radius: 1rem;
@@ -58,6 +58,7 @@ const price = computed(
           >
             <div>{{ productStore.productState.data.serial_code }}</div>
           </div>
+        </div>
         </div>
         <div class="flex gap-2">
           <p>Price</p>
@@ -72,16 +73,16 @@ const price = computed(
             }}
           </p>
         </div>
-        <div class="flex gap-2">
-          <div class="px-1 py-0.5 bg-gray-300 rounded-md">Free Ongkir</div>
-          <div class="px-1 py-0.5 bg-gray-300 rounded-md">Promo Code</div>
+        <div class="flex gap-2 my-1">
+          <div class="px-3 py-0.5 bg-gray-300 rounded-md">Free Ongkir</div>
+          <div class="px-3 py-0.5 bg-gray-300 rounded-md">Promo Code</div>
         </div>
-        <div>
-          <UFormGroup label="Size" class="pt-2">
+        <div class="my-2">
+          <UFormGroup label="Size" class="pt-2 w-48" >
             <template #label="{ label }">
               <p class="text-base font-semibold">{{ label }}</p>
             </template>
-            <USelectMenu v-model="selected" :options="options" class="w-40" />
+            <USelectMenu v-model="selected" :options="options" class="w-48" />
           </UFormGroup>
         </div>
         <UFormGroup label="Quantity" class="pt-2">
@@ -90,6 +91,32 @@ const price = computed(
           </template>
 
           <div class="flex items-center gap-2">
+            <UButton
+            icon="i-heroicons-minus"
+            size="sm"
+            class="!bg-gray-400 !text-white"
+            square
+            variant="solid"
+            :disabled="quantity === 1"
+            @click="
+              () => {
+                quantity -= 1;
+              }
+            "
+          />
+
+            <Quantity
+              class-input="!bg-white focus:ring-0 border border-black w-28 text-center"
+              :init-value="0"
+              :max-val="productStore.productState.data?.stock"
+              :raw-value="quantity"
+              @update:raw-value="
+                (value) => {
+                  quantity = value;
+                }
+              "
+            />
+         
             <UButton
               icon="i-heroicons-plus"
               size="sm"
@@ -103,47 +130,21 @@ const price = computed(
               "
               variant="solid"
             />
-
-            <Quantity
-              class-input="!bg-white focus:ring-0 border border-black w-20 text-center"
-              :init-value="0"
-              :max-val="productStore.productState.data?.stock"
-              :raw-value="quantity"
-              @update:raw-value="
-                (value) => {
-                  quantity = value;
-                }
-              "
-            />
-
-            <UButton
-              icon="i-heroicons-minus"
-              size="sm"
-              class="!bg-gray-400 !text-white"
-              square
-              variant="solid"
-              :disabled="quantity === 1"
-              @click="
-                () => {
-                  quantity -= 1;
-                }
-              "
-            />
           </div>
         </UFormGroup>
 
-        <div>
+        <div class="">
           <div
-            class="flex bg-white border border-black rounded-3xl w-max text-xs mt-2"
+            class="flex bg-white border border-black rounded-3xl w-max text-xs mt-6"
           >
-            <button class="px-2 py-1 flex items-center" @click="onSubmit">
+            <button class="px-4 py-1.5 flex items-center" @click="onSubmit">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-6 h-6"
+                class="w-7 h-7 px-1"
               >
                 <path
                   stroke-linecap="round"
@@ -157,7 +158,7 @@ const price = computed(
 
             <NuxtLink to="/checkout">
               <button
-                class="px-5 py-1 bg-gray-400 rounded-3xl border-l border-black flex items-center"
+                class="px-8 py-1.5 bg-gray-300 rounded-3xl border-l border-black flex items-center"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +166,7 @@ const price = computed(
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-6 h-6"
+                  class="w-7 h-7 px-1"
                 >
                   <path
                     stroke-linecap="round"
@@ -187,9 +188,8 @@ const price = computed(
 
 <style scoped>
 .cartegory {
-  display: flex;
+  margin-right: 4px;
   gap: 0.4rem;
-  flex-wrap: wrap;
   font-weight: 600;
 }
 .cartegory div {

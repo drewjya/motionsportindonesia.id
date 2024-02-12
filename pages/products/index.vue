@@ -29,9 +29,9 @@ const sortBy = ref();
       Customizable Jerseys<br />for you and your homies
     </div>
   </div>
-  <div class="grid px-9 bg-gray-50 py-4 sticky item-filter">
+  <div class="grid px-9 ml-14 bg-gray-50 py-4 sticky item-filter">
     <div class="flex w-full">
-      <UFormGroup label="Aturkan Berdasarkan" class="w-full">
+      <UFormGroup label="Aturkan Berdasarkan" class="w-[60%]">
         <template #label="{ label }">
           <p class="text-black">{{ label }}</p>
         </template>
@@ -70,8 +70,8 @@ const sortBy = ref();
       </UFormGroup>
     </div>
 
-    <div class="flex w-full item">
-      <UFormGroup label="Filter" class="w-full">
+    <div class="flex justify-end w-full item">
+      <UFormGroup label="Filter" class="w-[60%]">
         <template #label="{ label }">
           <p class="text-black">{{ label }}</p>
         </template>
@@ -117,7 +117,7 @@ const sortBy = ref();
 <style scoped>
 .item-filter {
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 1rem;
+  column-gap: 2rem;
 }
 .item {
   grid-column-start: 3;

@@ -32,29 +32,32 @@ const props = defineProps<{
         >
           <div>Tidak Ada Produk Tersedia</div>
         </div>
-        <div v-else class="w-full grid products-data">
-          <NuxtLink v-for="i in props.state.data" :to="`/products/${i.id}`">
+        <div v-else class="w-full grid products-data ">
+          <NuxtLink v-for="i in props.state.data" :to="`/products/${i.id}`" class="border border-solid border-gray-300 rounded-lg">
             <div class="gap-[0.1rem] flex flex-col">
               <NuxtImg
                 loading="lazy"
                 :src="i.image"
                 alt=""
-                class="border border-zinc-300 bg-zinc-300 h-max"
+                class="border border-zinc-300 bg-zinc-300 h-max rounded-t-lg"
               />
-              <div class="w-full h-5 bg-zinc-300 rounded-b-xl"></div>
             </div>
             <div
-              class="text-center text-black text-sm font-medium font-['DM Sans'] capitalize"
+              class="mx-4  text-black text-md  font-['DM Sans'] capitalize mb-2 "
             >
-              <p>{{ i.name }}</p>
-              <p>{{ i.price }}</p>
-              <p>{{ i.stock != 0 ? "Available" : "Not Avaliable" }}</p>
+            <p class=" my-2">{{ i.name }} Kemeja M231 Ukuran 23</p>
+            <div class="flex justify-between">
+              <p>Price:</p>
+              <p class="font-medium ">Rp. {{ i.price }}</p>
+            </div>
+              <!-- <p class="underline mb-4">Check Product</p> -->
+            <p class="font-medium text-center my-3" :class="i.stock!=0?'text-green-700' : 'text-red-700'">{{ i.stock != 0 ? "Available" : "Not Avaliable" }}</p>
             </div>
           </NuxtLink>
         </div>
       </div>
     </div>
-    <div class="">
+    <div class="my-4">
       <Carousel :autoplay="2000" :wrap-around="true">
         <Slide v-for="slide in 10" :key="slide">
           <img

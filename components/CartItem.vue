@@ -33,7 +33,7 @@ const getPrice = (qty: number, price: number): string => {
       <div class="flex fr">
         <div class="flex flex-col">
           <h2 class="font-bold">{{ props.cartItem.product.name }}</h2>
-          <div class="keterangan">
+          <div class="keterangan mt-1 mb-2">
             <p v-for="i in (props.cartItem.product.categories??<Category[]>[])">
               {{ i.name }}
             </p>
@@ -57,20 +57,20 @@ const getPrice = (qty: number, price: number): string => {
               variant="solid"
             />
             <UButton
-              icon="i-heroicons-plus"
-              size="sm"
-              class="!bg-gray-400 !text-white"
-              square
-              variant="solid"
-            />
-            <div>{{ props.cartItem.quantity }}</div>
+            icon="i-heroicons-minus"
+            size="sm"
+            class="!bg-gray-400 !text-white"
+            square
+            variant="solid"
+          />
+            <div >{{ props.cartItem.quantity }}</div>
             <UButton
-              icon="i-heroicons-minus"
-              size="sm"
-              class="!bg-gray-400 !text-white"
-              square
-              variant="solid"
-            />
+            icon="i-heroicons-plus"
+            size="sm"
+            class="!bg-gray-400 !text-white"
+            square
+            variant="solid"
+          />
           </div>
         </div>
       </div>

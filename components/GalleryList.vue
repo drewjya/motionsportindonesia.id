@@ -8,7 +8,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="py-3 flex flex-col gap-2">
+  <div class="py-2 flex flex-col gap-2">
     <div
       v-if="props.state.loading"
       class="flex justify-center items-center h-32"
@@ -17,8 +17,9 @@ const props = defineProps<{
     </div>
     <div v-else-if="props.state.data">
       <div v-if="props.state.data.length === 0"></div>
-      <div v-else class="flex flex-col divide-y-2">
+      <div v-else class="flex flex-col divide-y-1">
         <div v-for="(i, index) in props.state.data" class="px-10">
+          <GalleryItem :item="i" />
           <GalleryItem :item="i" />
         </div>
       </div>
