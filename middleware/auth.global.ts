@@ -6,13 +6,13 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const include = ["/cart", "/checkout", "/profile"];
 
   const routesIsProtected = include.includes(to.path);
-  console.log("routesIsProtected", routesIsProtected);
 
-  const routeIsAuth = ["/login", "/register"].includes(to.path);
+  const routeIsAuth = ["/login", "/signup"].includes(to.path);
   const bol = await auth.refresh();
+  console.log("START++++========");
+
   console.log(bol);
 
-  console.log(to.path);
   let val: State<User | undefined> = {
     loading: true,
     data: undefined,
@@ -20,13 +20,14 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     message: undefined,
     meta: undefined,
   };
+
   try {
     val = await auth.profile();
   } catch (error) {
     val.error = `${JSON.stringify(error)}`;
   }
-  console.log(val);
-
+  console.log(val, routeIsAuth);
+  console.log("END++++========");
   if (val.error !== undefined) {
     if (routesIsProtected) {
       return navigateTo("/login");

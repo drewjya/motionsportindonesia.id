@@ -6,11 +6,6 @@ const quantity = ref(1);
 onMounted(() => {
   productStore.fetchData();
 });
-beforeEach((to, from, next) => {
-  console.log(to);
-  console.log(from);
-  next();
-});
 
 const options = ["XL", "L", "M", "S"];
 const selected = ref(options[0]);

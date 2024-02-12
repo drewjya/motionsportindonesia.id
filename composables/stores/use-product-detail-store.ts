@@ -19,7 +19,7 @@ export const useProductDetailStore = (id: number) =>
         method: "GET",
         baseUrl: serverUrl,
       });
-      console.log(val, productState.value);
+
       productState.value = {
         ...val,
       };

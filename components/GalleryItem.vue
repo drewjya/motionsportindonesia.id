@@ -12,10 +12,8 @@ onMounted(() => {
     props.item.detail,
     "text/html"
   );
-  console.log(parsed);
 
   const firstTwoElements = Array.from(parsed.body.children).slice(0, 2);
-  console.log(firstTwoElements);
 
   const limitedContentContainer = document.createElement("div");
   firstTwoElements.forEach((element) => {

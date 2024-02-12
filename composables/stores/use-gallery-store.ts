@@ -1,4 +1,3 @@
-
 import type { Gallery } from "~/type/model/gallery";
 import type { State } from "~/type/response/server_response";
 export const useGalleryStore = defineStore("gallery-store-data", () => {
@@ -21,7 +20,7 @@ export const useGalleryStore = defineStore("gallery-store-data", () => {
         baseUrl: serverUrl,
       }
     );
-    console.log(val, galleryState.value);
+
     galleryState.value = {
       ...val,
     };
@@ -34,5 +33,3 @@ export const useGalleryStore = defineStore("gallery-store-data", () => {
     fetchData,
   };
 });
-
-

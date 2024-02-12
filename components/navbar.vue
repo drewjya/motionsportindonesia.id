@@ -2,10 +2,10 @@
 import { onClickOutside } from "@vueuse/core";
 const isActive = ref(false);
 const navIcon = ref(null);
+const authStore = useAuthStore();
 
 const route = useRoute();
 watch(route, () => {
-  console.log(route);
   isActive.value = false;
 });
 
@@ -20,6 +20,10 @@ onMounted(() => {
 
     isActive.value = false;
   });
+});
+
+const isLoggedInd = computed(() => {
+  return authStore.userState.data !== undefined;
 });
 </script>
 
@@ -169,24 +173,46 @@ onMounted(() => {
                 About Us
               </li></NuxtLink
             >
-
-            <NuxtLink to="/signup">
-              <li
-                :class="
-                  route.fullPath === '/signup' ? 'bg-slate-100 !text-black' : ''
-                "
-                class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
+            <div v-if="isLoggedInd">
+              <NuxtLink to="/signup">
+                <li
+                  :class="
+                    route.fullPath === '/signup'
+                      ? 'bg-slate-100 !text-black'
+                      : ''
+                  "
+                  class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
+                >
+                  Sign Up
+                </li></NuxtLink
               >
-                Sign Up
-              </li></NuxtLink
-            >
-            <NuxtLink to="/login">
-              <li
-                class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
+              <NuxtLink to="/login">
+                <li
+                  class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
+                >
+                  Log In
+                </li></NuxtLink
               >
-                Log In
-              </li></NuxtLink
-            >
+            </div>
+            <div v-else>
+              <NuxtLink to="/cart">
+                <li
+                  :class="
+                    route.fullPath === '/cart' ? 'bg-slate-100 !text-black' : ''
+                  "
+                  class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
+                >
+                  Cart
+                </li></NuxtLink
+              >
+              <NuxtLink to="/">
+                <li
+                  class="p-2 item-nav text-white hover:bg-slate-100 hover:text-black m-2"
+                >
+                  Profile
+                </li></NuxtLink
+              >
+            </div>
           </ul>
         </div>
       </div>

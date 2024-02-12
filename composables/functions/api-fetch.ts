@@ -36,8 +36,6 @@ export async function apiFetch<T>(
         error: err.messages,
       };
     } catch (erv) {
-      console.log(erv);
-
       return {
         loading: false,
         meta: undefined,
